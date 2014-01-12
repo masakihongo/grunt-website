@@ -1,6 +1,5 @@
 # grunt for website
-HTML5 CSS3 initial template & 
-jshint, uglyfy, compass
+HTML5 CSS3 initial template & jshint, uglyfy, compass
 =============
 
 * grunt-contrib-jshint
