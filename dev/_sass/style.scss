@@ -21,7 +21,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: $fontFamily;
-	color: $textColor;
+    color: $textColor;
     line-height: 1.6;
 }
 p {
@@ -123,11 +123,10 @@ a:hover img {
 .btn {
     @include inline-block;
     width: 260px;
-    padding: 18px 0;
     @include border-radius(8px);
     background-color: $linkColor;
     @include fz(16);
-    line-height: 1;
+    line-height: 60px;
     text-align: center;
     color: #fff;
     cursor: pointer;
