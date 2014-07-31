@@ -1,0 +1,33 @@
+{
+  "name": "grunt-website",
+  "version": "0.0.1",
+  "authors": [
+    "5LOG"
+  ],
+  "description": "website default package",
+  "main": "bower.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1",
+    "normalize-css": "~3.0.1",
+    "html5shiv": "~3.7.2"
+  },
+  "exportsOverride": {
+    "jquery": {
+      "js": "**/jquery.min.js"
+    },
+    "normalize-css": {
+      "css": "**/normalize.css"
+    },
+    "html5shiv": {
+      "js": "**/html5shiv.min.js"
+    }
+  }
+}
