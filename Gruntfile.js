@@ -1,13 +1,18 @@
 module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    dir: {
+        // Configurable paths
+        dev: 'dev/',
+        dist: 'dist/'
+    },
 
     connect: {
       options: {
       },
       livereload: {
         options: {
-          base: 'dev/',
+          base: '<%= dir.dev %>',
           open: true
         }
       }
@@ -18,14 +23,24 @@ module.exports = function (grunt) {
       },
       dist: {
         files: {
-          'dist/js/script.js': ['dev/js/script.js']
+          '<%= dir.dist %>js/script.js': ['<%= dir.dev %>js/script.js']
         }
       }
     },
     compass: {
       dist: {
         options: {
-          config: 'config.rb'
+          sassDir: '<%= dir.dev %>_sass',
+          cssDir: '<%= dir.dev %>css',
+          imagesDir: '<%= dir.dev %>_sass/sprite',
+          generatedImagesDir: '<%= dir.dev %>img',
+          httpGeneratedImagesPath: '/img',
+          javascriptsDir: '<%= dir.dev %>js',
+          fontsDir: '<%= dir.dev %>fonts',
+          outputStyle: 'compact',
+          noLineComments: true,
+          relativeAssets: false,
+          assetCacheBuster: false
         }
       }
     },
@@ -33,41 +48,45 @@ module.exports = function (grunt) {
       options: {
         jshintrc: '.jshintrc'
       },
-      all: ['dev/js/*.js']
+      all: ['<%= dir.dev %>js/*.js']
     },
     copy: {
       dist: {
         expand: true,
-        cwd: 'dev/',
-        dest: 'dist',
+        cwd: '<%= dir.dev %>',
+        dest: '<%= dir.dist %>',
         src: '**'
       }
     },
     clean: {
-      build: ['dist/_sass']
+      build: ['<%= dir.dist %>_sass']
     },
     watch: {
       options: {
         livereload: true
       },
       js: {
-        files: ['dev/js/*.js'],
+        files: ['<%= dir.dev %>js/*.js'],
         tasks: ['jshint']
       },
       compass: {
-        files: ['dev/_sass/*.scss'],
+        files: ['<%= dir.dev %>_sass/{,*/}*.scss'],
         tasks: ['compass']
       },
       livereload: {
-        files: ['dev/index.html']
+        files: ['<%= dir.dev %>{,*/}*.html']
+      }
+    },
+    concat: {
+      files: {
+        src: '<%= dir.dev %>lib/plugins/**.js',
+        dest: '<%= dir.dev %>lib/js/plugins.js'
       }
     }
   });
 
   require('load-grunt-tasks')(grunt);
 
-  grunt.registerTask('default', ['connect', 'watch']);
-  grunt.registerTask('dev', ['connect', 'watch']);
-  grunt.registerTask('css', ['compass']);
-  grunt.registerTask('build', ['css', 'copy', 'clean', 'uglify']);
+  grunt.registerTask('default', ['concat', 'connect', 'watch']);
+  grunt.registerTask('build', ['concat', 'compass', 'copy', 'clean', 'uglify']);
 };
