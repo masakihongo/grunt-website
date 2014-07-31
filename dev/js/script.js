@@ -9,7 +9,7 @@
         var cmn = {};
 
         cmn.init = function () {
-            app.functions.addLog('init!');
+            app.fn.addLog('init!');
         };
 
         return cmn;
@@ -18,7 +18,7 @@
     /* -----------------------------------------------------------------
      * Utility functions
     ----------------------------------------------------------------- */
-    app.functions = (function () {
+    app.fn = (function () {
         var module = {
 
             addLog: function (log) {
@@ -28,6 +28,12 @@
 
         return module;
     }());
+
+    $.extend( jQuery.easing, {
+        easeOutQuart: function (x, t, b, c, d) {
+            return -c * ((t=t/d-1)*t*t*t - 1) + b;
+        }
+    });
 
     /* -----------------------------------------------------------------
      * Setup

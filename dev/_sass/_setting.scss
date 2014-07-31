@@ -16,13 +16,9 @@ $experimental-support-for-opera : true;
 $experimental-support-for-microsoft : true;
 $experimental-support-for-khtml : false;
 
-//ie9用 svg
-$experimental-support-for-svg: true;
-
 
 // 標準font-family
-$fontFamily : 'ヒラギノ角ゴ ProN W3','Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', Helvetica, Arial, sans-serif;
-$fontFamilyEn : Verdana, Helvetica, Arial, 'ヒラギノ角ゴ ProN W3','Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+$fontFamily : 'ヒラギノ角ゴ ProN W3','Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', Helvetica, verdana, Arial, sans-serif;
 
 // 標準テキストカラー
 $textColor : #333;
@@ -35,10 +31,13 @@ $linkColor_active : #ff0000;
 
 // アクセントカラー
 $baseColor : #f0f0f0;
-$colorA : #E57D54;
-$colorB : #399FC7;
-$colorC : #F9D94B;
+
+// 画面サイズ
+$width : 1040px;
 
 //media-query用サイズ
 $maxWidth1 : 979px;
 $maxWidth2 : 639px;
+
+// Sprite
+//$sprites: sprite-map("icon/*.png");
