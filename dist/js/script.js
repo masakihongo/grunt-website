@@ -1,0 +1,2 @@
+/*! sample 2014-07-31 */
+!function(a,b){"use strict";var c=b.appName={};c.init=function(){var a={};return a.init=function(){c.fn.addLog("init!")},a},c.fn=function(){var a={addLog:function(a){console.log(a)}};return a}(),a.extend(jQuery.easing,{easeOutQuart:function(a,b,c,d,e){return-d*((b=b/e-1)*b*b*b-1)+c}}),a(function(){var a=b.appName.init();a.init()})}(jQuery,window);
