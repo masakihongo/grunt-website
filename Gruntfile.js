@@ -7,20 +7,21 @@ module.exports = function (grunt) {
             // Configurable paths
             dev: 'dev/',
             dist: 'dist/',
-            asset: 'share/'
+            asset: 'share/',
+            projectRoot: ''
         },
 
         watch: {
             js: {
-                files: ['<%= dir.dev %><%= dir.asset %>js/*.js'],
+                files: ['<%= dir.dev %><%= dir.projectRoot %><%= dir.asset %>js/*.js'],
                 tasks: ['jshint']
             },
             concat: {
-                files: ['<%= dir.dev %><%= dir.asset %>js/plugins/*.js'],
+                files: ['<%= dir.dev %><%= dir.projectRoot %><%= dir.asset %>js/plugins/*.js'],
                 tasks: ['concat']
             },
             compass: {
-                files: ['<%= dir.dev %><%= dir.asset %>sass/{,*/}*.scss'],
+                files: ['<%= dir.dev %><%= dir.projectRoot %><%= dir.asset %>sass/{,*/}*.scss'],
                 tasks: ['compass']
             },
             livereload: {
@@ -28,6 +29,7 @@ module.exports = function (grunt) {
                     livereload: '<%= connect.options.livereload %>'
                 },
                 files: [
+                    'Gruntfile.js',
                     '<%= dir.dev %>**/*.html',
                     '<%= dir.dev %>**/*.js',
                     '<%= dir.dev %>**/*.css'
@@ -52,13 +54,13 @@ module.exports = function (grunt) {
         compass: {
             dist: {
                 options: {
-                    sassDir: '<%= dir.dev %><%= dir.asset %>sass',
-                    cssDir: '<%= dir.dev %><%= dir.asset %>css',
-                    imagesDir: '<%= dir.dev %><%= dir.asset %>img/sprite',
-                    generatedImagesDir: '<%= dir.dev %><%= dir.asset %>img',
-                    httpGeneratedImagesPath: '/<%= dir.asset %>/img',
-                    javascriptsDir: '<%= dir.dev %><%= dir.asset %>js',
-                    fontsDir: '<%= dir.dev %><%= dir.asset %>fonts',
+                    sassDir: '<%= dir.dev %><%= dir.projectRoot %><%= dir.asset %>sass',
+                    cssDir: '<%= dir.dev %><%= dir.projectRoot %><%= dir.asset %>css',
+                    imagesDir: '<%= dir.dev %><%= dir.projectRoot %><%= dir.asset %>img/sprite',
+                    generatedImagesDir: '<%= dir.dev %><%= dir.projectRoot %><%= dir.asset %>img',
+                    httpGeneratedImagesPath: '/<%= dir.projectRoot %><%= dir.asset %>img',
+                    javascriptsDir: '<%= dir.dev %><%= dir.projectRoot %><%= dir.asset %>js',
+                    fontsDir: '<%= dir.dev %><%= dir.projectRoot %><%= dir.asset %>fonts',
                     outputStyle: 'compact',
                     noLineComments: true,
                     relativeAssets: false,
@@ -73,7 +75,7 @@ module.exports = function (grunt) {
             },
             all: [
                 'Gruntfile.js',
-                '<%= dir.dev %><%= dir.asset %>js/*.js'
+                '<%= dir.dev %><%= dir.asset %><%= dir.projectRoot %>js/*.js'
             ]
         },
 
@@ -81,9 +83,9 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= dir.dev %><%= dir.asset %>js',
+                    cwd: '<%= dir.dev %><%= dir.projectRoot %><%= dir.asset %>js',
                     src: '*.js',
-                    dest: '<%= dir.dist %><%= dir.asset %>js'
+                    dest: '<%= dir.dist %><%= dir.projectRoot %><%= dir.asset %>js'
                 }]
             }
         },
@@ -91,16 +93,16 @@ module.exports = function (grunt) {
         cssmin: {
             files: {
                 expand: true,
-                cwd: '<%= dir.dev %><%= dir.asset %>css/',
-                dest: '<%= dir.dist %><%= dir.asset %>css/',
+                cwd: '<%= dir.dev %><%= dir.projectRoot %><%= dir.asset %>css/',
+                dest: '<%= dir.dist %><%= dir.projectRoot %><%= dir.asset %>css/',
                 src: ['*.css']
             }
         },
 
         concat: {
             files: {
-                src: '<%= dir.dev %><%= dir.asset %>js/plugins/**.js',
-                dest: '<%= dir.dev %><%= dir.asset %>js/lib/plugins.js'
+                src: '<%= dir.dev %><%= dir.projectRoot %><%= dir.asset %>js/plugins/**.js',
+                dest: '<%= dir.dev %><%= dir.projectRoot %><%= dir.asset %>js/lib/plugins.js'
             }
         },
 
@@ -118,7 +120,7 @@ module.exports = function (grunt) {
                 src: ['<%= dir.dist %>']
             },
             dist: {
-                src: ['<%= dir.dist %><%= dir.asset %>js/plugins', '<%= dir.dist %><%= dir.asset %>_sass']
+                src: ['<%= dir.dist %><%= dir.projectRoot %><%= dir.asset %>js/plugins', '<%= dir.dist %><%= dir.projectRoot %><%= dir.asset %>_sass']
             }
 
         }
